@@ -1,6 +1,6 @@
 {
   "name": "azure-functions-types",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Typescript type definitions for Azure Functions, extracted from [azure-functions-nodejs-worker](https://github.com/Azure/azure-functions-nodejs-worker)",
   "scripts": {},
   "repository": {
