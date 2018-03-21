@@ -1,18 +1,18 @@
 {
-  "name": "azure-functions-types",
+  "name": "azure-functions-typedefinitions",
   "version": "1.0.0",
   "description": "Typescript type definitions for Azure Functions, extracted from [azure-functions-nodejs-worker](https://github.com/Azure/azure-functions-nodejs-worker)",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bomret/azure-functions-types.git"
+    "url": "git+https://github.com/Bomret/azure-functions-typedefinitions.git"
   },
   "author": "Stefan Reichel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Bomret/azure-functions-types/issues"
+    "url": "https://github.com/Bomret/azure-functions-typedefinitions/issues"
   },
-  "homepage": "https://github.com/Bomret/azure-functions-types#readme",
+  "homepage": "https://github.com/Bomret/azure-functions-typedefinitions#readme",
   "devDependencies": {
     "typescript": "^2.7.2"
   }
