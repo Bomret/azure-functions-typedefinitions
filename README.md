@@ -1,5 +1,7 @@
 # Azure Functions Type Definitions
 
+[![npm](https://img.shields.io/npm/v/azure-functions-typedefinitions.svg)](https://www.npmjs.com/package/azure-functions-typedefinitions)
+
 These are Typescript type definitions that were extracted from the official [Azure Functions Nodejs Worker](https://github.com/Azure/azure-functions-nodejs-worker) repository on GitHub.
 
 Current state: `2018-03-21`
@@ -12,14 +14,20 @@ npm i -D azure-functions-typedefinitions
 
 ## Usage
 
-```
+```typescript
 import { IContext, IHttpRequest } from 'azure-functions-typedefinitions'
 
 export function run (context: IContext, req: IHttpRequest): void {
-    context.log.info(`${context.bindingData.sys.utcNow}: Function ${context.executionContext.functionName} (${context.invocationId}) started.`)
+  context.log.info('Hello from a typed function!')
 
-    context.res
-        .status(200)
-        .json({ message: 'success' })
+  const resBody = {
+    invocationId: context.invocationId,
+    name: context.executionContext.functionName,
+    startTimeUtc: context.bindingData.sys.utcNow
+  }
+
+  context.res
+    .status(200)
+    .json(resBody)
 }
 ```
