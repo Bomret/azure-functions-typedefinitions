@@ -1,6 +1,8 @@
 # Azure Functions Type Definitions
 
 [![npm](https://img.shields.io/npm/v/azure-functions-typedefinitions.svg)](https://www.npmjs.com/package/azure-functions-typedefinitions)
+[![npm](https://img.shields.io/david/bomret/azure-functions-typedefinitions.svg)](https://github.com/bomret/azure-functions-typedefinitions/blob/master)
+
 
 These are Typescript type definitions that were extracted from the official [Azure Functions Nodejs Worker](https://github.com/Azure/azure-functions-nodejs-worker) repository on GitHub.
 
