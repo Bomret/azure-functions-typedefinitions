@@ -2,6 +2,14 @@
   "name": "azure-functions-typedefinitions",
   "version": "1.0.1",
   "description": "Typescript type definitions for Azure Functions, extracted from [azure-functions-nodejs-worker](https://github.com/Azure/azure-functions-nodejs-worker)",
+  "keywords": [
+    "azure",
+    "functions",
+    "serverless",
+    "types",
+    "definitions",
+    "typescript"
+  ],
   "scripts": {},
   "repository": {
     "type": "git",
