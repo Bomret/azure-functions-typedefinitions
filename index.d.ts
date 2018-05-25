@@ -66,7 +66,7 @@ export interface IBoundRequest {
   requestUri: string
 }
 
-export interface IBindingData {
+export interface IBindingData extends IDict<any> {
   invocationId: string
   sys: ISys
   query?: IDict<string>
