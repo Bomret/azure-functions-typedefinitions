@@ -30,9 +30,15 @@ export interface IHttpRequest extends IDict<any> {
   get(field: string): string | undefined
 }
 
+type HttpResponseStatus =
+  | string
+  | number
+  | ((statusCode: string | number) => IHttpResponse)
+
 export interface IHttpResponse extends IDict<any> {
-  headers: IDict<any>
-  statusCode?: string | number
+  headers?: IDict<any>
+  status?: HttpResponseStatus
+  statusCode?: HttpResponseStatus
   body?: any
   isRaw?: boolean
 
@@ -45,7 +51,6 @@ export interface IHttpResponse extends IDict<any> {
   header<T>(field: string, val: T): IHttpResponse
   get(field: string): any
   set<T>(field: string, val: T): IHttpResponse
-  status(statusCode: string | number): IHttpResponse
   sendStatus(statusCode: string | number): IHttpResponse
   type(type: string): IHttpResponse
   json<T>(body: T): IHttpResponse
