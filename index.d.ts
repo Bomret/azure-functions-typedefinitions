@@ -17,6 +17,10 @@ export interface IDoneCallback {
   (err?: any, result?: any): void
 }
 
+export interface IHttpRequestMethods {
+  get(field: string): string | undefined
+}
+
 export interface IHttpRequest extends IDict<any> {
   method: string
   url: string
@@ -26,9 +30,9 @@ export interface IHttpRequest extends IDict<any> {
   params?: IDict<string>
   body?: any
   rawbody?: any
-
-  get(field: string): string | undefined
 }
+
+export type HttpRequest = IHttpRequest | IHttpRequestMethods
 
 type HttpResponseStatus =
   | string
@@ -41,7 +45,9 @@ export interface IHttpResponse extends IDict<any> {
   statusCode?: HttpResponseStatus
   body?: any
   isRaw?: boolean
+}
 
+export interface IHttpResponseMethods {
   raw<T>(body: T): IHttpResponse
   end<T>(body?: T): IHttpResponse
   setHeader<T>(field: string, val: T): IHttpResponse
@@ -55,6 +61,8 @@ export interface IHttpResponse extends IDict<any> {
   type(type: string): IHttpResponse
   json<T>(body: T): IHttpResponse
 }
+
+export type HttpResonse = IHttpResponse | IHttpResponseMethods
 
 export interface IExecutionContext {
   invocationId: string
