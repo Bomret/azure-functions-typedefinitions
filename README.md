@@ -17,9 +17,9 @@ npm i -D azure-functions-typedefinitions
 ## Usage
 
 ```typescript
-import { IContext, IHttpRequest } from 'azure-functions-typedefinitions'
+import { IContext, HttpRequest } from 'azure-functions-typedefinitions'
 
-export function run (context: IContext, req: IHttpRequest): void {
+export function run (context: IContext, req: HttpRequest): void {
   context.log.info('Hello from a typed function!')
 
   const resBody = {

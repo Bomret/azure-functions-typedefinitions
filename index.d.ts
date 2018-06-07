@@ -32,7 +32,7 @@ export interface IHttpRequest extends IDict<any> {
   rawbody?: any
 }
 
-export type HttpRequest = IHttpRequest | IHttpRequestMethods
+export type HttpRequest = IHttpRequest & IHttpRequestMethods
 
 type HttpResponseStatus =
   | string
@@ -62,7 +62,7 @@ export interface IHttpResponseMethods {
   json<T>(body: T): IHttpResponse
 }
 
-export type HttpResponse = IHttpResponse | IHttpResponseMethods
+export type HttpResponse = IHttpResponse & IHttpResponseMethods
 
 export interface IExecutionContext {
   invocationId: string
@@ -94,6 +94,6 @@ export interface IContext {
   bindingData: IBindingData
   log: ILogger
   done: IDoneCallback
-  req?: IHttpRequest
-  res?: IHttpResponse
+  req?: HttpRequest
+  res?: HttpResponse
 }
