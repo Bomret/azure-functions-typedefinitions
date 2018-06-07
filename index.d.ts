@@ -62,7 +62,7 @@ export interface IHttpResponseMethods {
   json<T>(body: T): IHttpResponse
 }
 
-export type HttpResonse = IHttpResponse | IHttpResponseMethods
+export type HttpResponse = IHttpResponse | IHttpResponseMethods
 
 export interface IExecutionContext {
   invocationId: string
