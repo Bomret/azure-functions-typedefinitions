@@ -79,21 +79,55 @@ export interface IBoundRequest {
   requestUri: string
 }
 
-export interface IBindingData extends IDict<any> {
+export interface IBindingDataBase extends IDict<any> {
   invocationId: string
   sys: ISys
+}
+
+export interface IBindingDataEventHub extends IBindingDataBase {
+  partitionContext: {
+    eventHubPath: string;
+    consumerGroupName: string;
+  }
+  partitionKey: any;
+  offset: string;
+  sequenceNumber: number;
+  enqueuedTimeUtc: Date;
+  properties: IDict<any>;
+  systemProperties: {
+    "iothub-connection-device-id": string;
+    "iothub-connection-auth-method": string;
+    "iothub-connection-auth-generation-id": string;
+    "iothub-enqueuedtime": Date;
+    "iothub-message-source": string;
+    "x-opt-sequence-number": number;
+    "x-opt-offset": string;
+    "x-opt-enqueued-time": Date;
+    enqueuedTimeUtc: Date;
+    sequenceNumber: number;
+    offset: string;
+  }
+}
+
+export interface IBindingData extends IBindingDataBase {
   query?: IDict<string>
   req?: IBoundRequest
   '$request'?: IBoundRequest
 }
 
-export interface IContext {
+export interface IContextBase<T> {
   invocationId: string
   executionContext: IExecutionContext
   bindings: IDict<any>
-  bindingData: IBindingData
+  bindingData: T
   log: ILogger
   done: IDoneCallback
+}
+
+export interface IContextEventHub extends IContextBase<IBindingDataEventHub> {
+}
+
+export interface IContext extends IContextBase<IBindingData> {
   req?: HttpRequest
   res?: HttpResponse
 }
