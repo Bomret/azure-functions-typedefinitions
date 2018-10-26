@@ -1,94 +1,94 @@
 export interface ILog {
-  (...args: any[]): void
+  (...args: any[]): void;
 }
 
 export interface ILogger extends ILog {
-  error: ILog
-  warn: ILog
-  info: ILog
-  verbose: ILog
+  error: ILog;
+  warn: ILog;
+  info: ILog;
+  verbose: ILog;
 }
 
 export interface IDict<TValue> {
-  [key: string]: TValue
+  [key: string]: TValue;
 }
 
 export interface IDoneCallback {
-  (err?: any, result?: any): void
+  (err?: any, result?: any): void;
 }
 
 export interface IHttpRequestMethods {
-  get(field: string): string | undefined
+  get(field: string): string | undefined;
 }
 
 export interface IHttpRequest extends IDict<any> {
-  method: string
-  url: string
-  originalUrl: string
-  headers?: IDict<string>
-  query?: IDict<string>
-  params?: IDict<string>
-  body?: any
-  rawbody?: any
+  method: string;
+  url: string;
+  originalUrl: string;
+  headers?: IDict<string>;
+  query?: IDict<string>;
+  params?: IDict<string>;
+  body?: any;
+  rawbody?: any;
 }
 
-export type HttpRequest = IHttpRequest & IHttpRequestMethods
+export type HttpRequest = IHttpRequest & IHttpRequestMethods;
 
 type HttpResponseStatus =
   | string
   | number
-  | ((statusCode: string | number) => IHttpResponse)
+  | ((statusCode: string | number) => IHttpResponse);
 
 export interface IHttpResponse extends IDict<any> {
-  headers?: IDict<any>
-  status?: HttpResponseStatus
-  statusCode?: HttpResponseStatus
-  body?: any
-  isRaw?: boolean
+  headers?: IDict<any>;
+  status?: HttpResponseStatus;
+  statusCode?: HttpResponseStatus;
+  body?: any;
+  isRaw?: boolean;
 }
 
 export interface IHttpResponseMethods {
-  raw<T>(body: T): IHttpResponse
-  end<T>(body?: T): IHttpResponse
-  setHeader<T>(field: string, val: T): IHttpResponse
-  getHeader(field: string): any
-  removeHeader(field: string): IHttpResponse
-  send<T>(body?: T): IHttpResponse
-  header<T>(field: string, val: T): IHttpResponse
-  get(field: string): any
-  set<T>(field: string, val: T): IHttpResponse
-  sendStatus(statusCode: string | number): IHttpResponse
-  type(type: string): IHttpResponse
-  json<T>(body: T): IHttpResponse
+  raw<T>(body: T): IHttpResponse;
+  end<T>(body?: T): IHttpResponse;
+  setHeader<T>(field: string, val: T): IHttpResponse;
+  getHeader(field: string): any;
+  removeHeader(field: string): IHttpResponse;
+  send<T>(body?: T): IHttpResponse;
+  header<T>(field: string, val: T): IHttpResponse;
+  get(field: string): any;
+  set<T>(field: string, val: T): IHttpResponse;
+  sendStatus(statusCode: string | number): IHttpResponse;
+  type(type: string): IHttpResponse;
+  json<T>(body: T): IHttpResponse;
 }
 
-export type HttpResponse = IHttpResponse & IHttpResponseMethods
+export type HttpResponse = IHttpResponse & IHttpResponseMethods;
 
 export interface IExecutionContext {
-  invocationId: string
-  functionName: string
-  functionDirectory: string
+  invocationId: string;
+  functionName: string;
+  functionDirectory: string;
 }
 
 export interface ISys {
-  methodName: string
-  utcNow: Date
+  methodName: string;
+  utcNow: Date;
 }
 
 export interface IBoundRequest {
-  requestUri: string
+  requestUri: string;
 }
 
-export interface IBindingDataBase extends IDict<any> {
-  invocationId: string
-  sys: ISys
+export interface IBindingData extends IDict<any> {
+  invocationId: string;
+  sys: ISys;
 }
 
-export interface IBindingDataEventHub extends IBindingDataBase {
+export interface IEventHubBindingData extends IBindingData {
   partitionContext: {
     eventHubPath: string;
     consumerGroupName: string;
-  }
+  };
   partitionKey: any;
   offset: string;
   sequenceNumber: number;
@@ -106,28 +106,27 @@ export interface IBindingDataEventHub extends IBindingDataBase {
     enqueuedTimeUtc: Date;
     sequenceNumber: number;
     offset: string;
-  }
+  };
 }
 
-export interface IBindingData extends IBindingDataBase {
-  query?: IDict<string>
-  req?: IBoundRequest
-  '$request'?: IBoundRequest
+export interface IHttpBindingData extends IBindingData {
+  query?: IDict<string>;
+  req?: IBoundRequest;
+  $request?: IBoundRequest;
 }
 
-export interface IContextBase<T> {
-  invocationId: string
-  executionContext: IExecutionContext
-  bindings: IDict<any>
-  bindingData: T
-  log: ILogger
-  done: IDoneCallback
+export interface IContext<T> {
+  invocationId: string;
+  executionContext: IExecutionContext;
+  bindings: IDict<any>;
+  bindingData: T;
+  log: ILogger;
+  done: IDoneCallback;
 }
 
-export interface IContextEventHub extends IContextBase<IBindingDataEventHub> {
-}
+export interface IEventHubContext extends IContext<IEventHubBindingData> {}
 
-export interface IContext extends IContextBase<IBindingData> {
-  req?: HttpRequest
-  res?: HttpResponse
+export interface IHttpContext extends IContext<IHttpBindingData> {
+  req?: HttpRequest;
+  res?: HttpResponse;
 }
